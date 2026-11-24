@@ -1,0 +1,412 @@
+/* Precision A4 Print Stylesheet (Portrait & Named Landscape) */
+.print-only {
+  display: none;
+}
+
+.print-checkbox {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid #000000;
+  border-radius: 2px;
+  background: #ffffff;
+  vertical-align: middle;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 10mm;
+}
+
+@page a4-landscape {
+  size: A4 landscape;
+  margin: 8mm;
+}
+
+@media print {
+  /* CRITICAL PRINT GUARD: Always force clean white background, crisp black ink, and standard print font scaling
+     regardless of Dark Mode, Warm Reading Mode, custom brand colors, or 120% accessibility font zoom */
+  html,
+  html.dark,
+  html[data-theme-mode='dark'],
+  html[data-theme-mode='reading'],
+  html[data-theme-mode='light'],
+  body {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-family: 'Vazirmatn', Tahoma, sans-serif !important;
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+    direction: rtl !important;
+    color-scheme: light !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .app-shell-root,
+  main,
+  .print-container,
+  .print-container * {
+    color: #000000 !important;
+    border-color: #334155 !important;
+    box-shadow: none !important;
+  }
+
+  .app-shell-root,
+  main,
+  .print-container,
+  .print-container .bg-white,
+  .print-container .bg-slate-50,
+  .print-container .dark\:bg-slate-900,
+  .print-container .dark\:bg-slate-950,
+  .print-container .dark\:bg-slate-800 {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .print-landscape {
+    page: a4-landscape;
+  }
+
+  .print-container {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+  }
+
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: auto;
+  }
+
+  thead {
+    display: table-header-group !important;
+  }
+
+  tfoot {
+    display: table-footer-group !important;
+  }
+
+  tr,
+  .print-card {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  th,
+  td {
+    border: 1px solid #1e293b !important;
+    padding: 4px 6px !important;
+    color: #000000 !important;
+  }
+
+  th {
+    background-color: #f1f5f9 !important;
+    font-weight: 700 !important;
+  }
+
+  .print-checkbox {
+    width: 14px !important;
+    height: 14px !important;
+    border: 1.5px solid #000000 !important;
+    background: #ffffff !important;
+  }
+
+  .print-signature-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 16px !important;
+    margin-top: 20px !important;
+    padding-top: 12px !important;
+    border-top: 1.5px solid #0f172a !important;
+    break-inside: avoid !important;
+  }
+
+  .certificate-print-sheet {
+    border: 4px double #0f172a !important;
+    padding: 10mm !important;
+    min-height: 262mm !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    page-break-inside: avoid !important;
+  }
+
+  .certificate-print-inner {
+    border: 1.5px solid #334155 !important;
+    padding: 8mm !important;
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+
+  .certificate-print-a5 {
+    page: a5-portrait;
+  }
+
+  .certificate-print-a5 .certificate-print-sheet {
+    border: 3px double #0f172a !important;
+    padding: 5mm !important;
+    min-height: 192mm !important;
+    max-height: 195mm !important;
+    overflow: hidden !important;
+  }
+
+  .certificate-print-a5 .certificate-print-inner {
+    border: 1px solid #334155 !important;
+    padding: 5mm !important;
+    gap: 4mm !important;
+  }
+
+  .certificate-print-2up {
+    page: a4-2up;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    height: 278mm !important;
+    max-height: 279mm !important;
+    overflow: hidden !important;
+    page-break-inside: avoid !important;
+  }
+
+  .certificate-print-2up .certificate-print-sheet {
+    border: 2.5px double #0f172a !important;
+    padding: 3.5mm !important;
+    min-height: 132mm !important;
+    max-height: 134mm !important;
+    overflow: hidden !important;
+  }
+
+  .certificate-print-2up .certificate-print-inner {
+    border: 1px solid #334155 !important;
+    padding: 4mm !important;
+    gap: 2.5mm !important;
+  }
+
+  .certificate-cut-line {
+    border-top: 1.5px dashed #64748b !important;
+    margin: 2mm 0 !important;
+    text-align: center !important;
+    font-size: 9px !important;
+    color: #475569 !important;
+  }
+
+  /* Prevent horizontal clipping in print mode for any overflow-x-auto wrapper */
+  .overflow-x-auto {
+    overflow: visible !important;
+  }
+
+  /* --- Global A5 Compact Print Engine ([data-print-size="a5"]) --- */
+  html[data-print-size='a5'],
+  html[data-print-size='a5'] body {
+    font-size: 9pt !important;
+    line-height: 1.35 !important;
+  }
+
+  html[data-print-size='a5'] .print-letterhead {
+    margin-bottom: 6px !important;
+    padding-bottom: 5px !important;
+    border-bottom-width: 1.5px !important;
+  }
+
+  html[data-print-size='a5'] .print-letterhead-title {
+    font-size: 11pt !important;
+    line-height: 1.3 !important;
+  }
+
+  html[data-print-size='a5'] .print-letterhead-sub,
+  html[data-print-size='a5'] .print-letterhead-meta {
+    font-size: 7.5pt !important;
+    line-height: 1.3 !important;
+  }
+
+  html[data-print-size='a5'] .print-letterhead-doc {
+    margin-top: 4px !important;
+    padding-top: 4px !important;
+  }
+
+  html[data-print-size='a5'] .print-letterhead-doc h2 {
+    font-size: 9.5pt !important;
+  }
+
+  html[data-print-size='a5'] table {
+    width: 100% !important;
+    table-layout: auto !important;
+    font-size: 8.5pt !important;
+    line-height: 1.32 !important;
+  }
+
+  html[data-print-size='a5'] th,
+  html[data-print-size='a5'] td {
+    padding: 2px 4px !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  html[data-print-size='a5'] .print-checkbox {
+    width: 12px !important;
+    height: 12px !important;
+    border: 1.25px solid #000000 !important;
+  }
+
+  html[data-print-size='a5'] .print-card,
+  html[data-print-size='a5'] section,
+  html[data-print-size='a5'] article {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  html[data-print-size='a5'] .print-signature-grid {
+    gap: 8px !important;
+    margin-top: 10px !important;
+    padding-top: 6px !important;
+    font-size: 8pt !important;
+  }
+
+  html[data-print-size='a5'] .print-sig-space {
+    margin-top: 14px !important;
+  }
+
+  html[data-print-size='a5'] h1 {
+    font-size: 11pt !important;
+  }
+
+  html[data-print-size='a5'] h2,
+  html[data-print-size='a5'] h3 {
+    font-size: 9.5pt !important;
+  }
+
+  html[data-print-size='a5'] p,
+  html[data-print-size='a5'] li,
+  html[data-print-size='a5'] span,
+  html[data-print-size='a5'] div {
+    max-width: 100%;
+  }
+}
+
+@page a5-portrait {
+  size: A5 portrait;
+  margin: 7mm;
+}
+
+@page a4-2up {
+  size: A4 portrait;
+  margin: 8mm;
+}
+
+/* --- Phase 5 Batch Exam Admission Cards (A4 4-up, A5 2-up, A5 1-up) --- */
+.admission-sheet-a4-4up {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.admission-sheet-a5-2up {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.admission-sheet-a5-1up {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media print {
+  .admission-page-break {
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  .admission-page-break:last-child {
+    page-break-after: auto !important;
+    break-after: auto !important;
+  }
+
+  .admission-sheet-a4-4up {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 5mm !important;
+  }
+
+  .admission-sheet-a5-2up {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 4mm !important;
+  }
+
+  .admission-sheet-a5-1up {
+    display: block !important;
+  }
+
+  .admission-card-box {
+    border: 1.5px dashed #334155 !important;
+    padding: 3.5mm !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .admission-card-inner {
+    border: 1.5px solid #0f172a !important;
+    padding: 3mm !important;
+    background: #ffffff !important;
+  }
+
+  .admission-cut-hint {
+    font-size: 7.5pt !important;
+    color: #475569 !important;
+    text-align: center !important;
+    margin-bottom: 1.5mm !important;
+  }
+}
+
+/* --- Isolated #global-print-sheet Sandbox Fallback (Phase 8B) --- */
+#global-print-sheet {
+  display: none;
+}
+
+@media print {
+  html[data-global-print-fallback='true'] body > *:not(#global-print-sheet) {
+    display: none !important;
+  }
+
+  html[data-global-print-fallback='true'] #global-print-sheet {
+    display: block !important;
+    width: 100% !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+    direction: rtl !important;
+    font-family: 'Vazirmatn', system-ui, Tahoma, sans-serif !important;
+  }
+
+  html[data-global-print-fallback='true'] #global-print-sheet .no-print {
+    display: none !important;
+  }
+
+  html[data-global-print-fallback='true'] #global-print-sheet .print-only {
+    display: block !important;
+  }
+}
+
+
+

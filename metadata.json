@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix Remix تکمل 9 ج ",
+  "description": "سامانه یکپارچه و آفلاین‌محور مدیریت هوشمند مجموعه مدارس با معماری بسته‌های الحاقی و حفظ کامل داده‌ها",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

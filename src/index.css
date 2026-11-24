@@ -1,0 +1,184 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@import "./styles/print.css";
+
+:root {
+  --brand-primary: #2b5b84;
+  --brand-primary-hover: #1e3a5f;
+  --brand-primary-soft: rgba(43, 91, 132, 0.11);
+  --brand-primary-soft-dark: rgba(43, 91, 132, 0.24);
+  --brand-ring: rgba(43, 91, 132, 0.35);
+  --brand-contrast-text: #ffffff;
+  --app-font-body: 'Vazirmatn', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, sans-serif;
+  --app-font-heading: 'Vazirmatn', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--app-font-body);
+  }
+
+  body {
+    font-family: var(--app-font-body);
+    font-feature-settings: "ss01";
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--app-font-heading);
+  }
+}
+
+/* Dynamic Brand Accent Utilities */
+.brand-bg {
+  background-color: var(--brand-primary);
+  color: var(--brand-contrast-text);
+}
+
+.brand-btn {
+  background-color: var(--brand-primary);
+  color: var(--brand-contrast-text);
+}
+
+.brand-btn:hover {
+  background-color: var(--brand-primary-hover);
+}
+
+.brand-nav-active {
+  background-color: var(--brand-primary-soft);
+  color: var(--brand-primary);
+  font-weight: 700;
+}
+
+.dark .brand-nav-active {
+  background-color: var(--brand-primary-soft-dark);
+  color: #f8fafc;
+}
+
+.brand-text {
+  color: var(--brand-primary);
+}
+
+.dark .brand-text {
+  color: color-mix(in srgb, var(--brand-primary) 55%, #ffffff);
+}
+
+.brand-soft-badge {
+  background-color: var(--brand-primary-soft);
+  color: var(--brand-primary);
+  border-color: var(--brand-ring);
+}
+
+.dark .brand-soft-badge {
+  background-color: var(--brand-primary-soft-dark);
+  color: #e2e8f0;
+  border-color: var(--brand-ring);
+}
+
+/* Subtle Light-Mode Surface Tints (Quick Appearance Popover) */
+html[data-theme-mode='light'][data-surface-tint='soft_gray'] body,
+html[data-theme-mode='light'][data-surface-tint='soft_gray'] .app-shell-root {
+  background-color: #eceff4;
+}
+
+html[data-theme-mode='light'][data-surface-tint='soft_gray'] .bg-slate-50 {
+  background-color: #eceff4;
+}
+
+html[data-theme-mode='light'][data-surface-tint='pale_blue'] body,
+html[data-theme-mode='light'][data-surface-tint='pale_blue'] .app-shell-root {
+  background-color: #edf4fc;
+}
+
+html[data-theme-mode='light'][data-surface-tint='pale_blue'] .bg-slate-50 {
+  background-color: #edf4fc;
+}
+
+html[data-theme-mode='light'][data-surface-tint='calm_cream'] body,
+html[data-theme-mode='light'][data-surface-tint='calm_cream'] .app-shell-root {
+  background-color: #f6f2e8;
+}
+
+html[data-theme-mode='light'][data-surface-tint='calm_cream'] .bg-slate-50 {
+  background-color: #f6f2e8;
+}
+
+/* Warm Reading Mode («حالت مطالعه — کرم ملایم»): eye-friendly paper tone with crisp dark text */
+html[data-theme-mode='reading'] body,
+html[data-theme-mode='reading'] .app-shell-root {
+  background-color: #f5efe2 !important;
+  color: #292524 !important;
+}
+
+html[data-theme-mode='reading'] .bg-slate-50,
+html[data-theme-mode='reading'] .bg-slate-50\/70,
+html[data-theme-mode='reading'] .bg-slate-50\/50 {
+  background-color: #f4ecdc !important;
+}
+
+html[data-theme-mode='reading'] .bg-white,
+html[data-theme-mode='reading'] .bg-white\/95 {
+  background-color: #fbf7ee !important;
+}
+
+html[data-theme-mode='reading'] .border-slate-200,
+html[data-theme-mode='reading'] .border-slate-100 {
+  border-color: #e4d8c3 !important;
+}
+
+/* Corner Radius Personalization */
+html[data-corners='sharp'] .rounded-2xl {
+  border-radius: 0.375rem !important;
+}
+
+html[data-corners='sharp'] .rounded-xl {
+  border-radius: 0.25rem !important;
+}
+
+html[data-corners='rounded'] .rounded-2xl {
+  border-radius: 1.5rem !important;
+}
+
+html[data-corners='rounded'] .rounded-xl {
+  border-radius: 1rem !important;
+}
+
+/* Sidebar Compact Density */
+html[data-sidebar-density='compact'] .sidebar-nav-item {
+  min-height: 36px;
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+  font-size: 0.8125rem;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.pb-safe {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+/* Smooth subtle transition between routes (< 200ms) */
+@keyframes routeFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.route-fade-enter {
+  animation: routeFadeIn 160ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-fade-enter {
+    animation: none;
+  }
+}
